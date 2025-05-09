@@ -1,17 +1,10 @@
-
-PUBLISHED ON LOVABLE PLATFORM: https://group4.lovable.app/
-
-
-
-
-
 WEEKLY UPDATES LOG
 
 📂 Project: Barangay Services Web App (React)GitHub Repo: jadeambos123/react-mix-masterpiece
 
 🗓️ Weekly Progress – April 14–18
 
-🎯 OverviewThis week, we started building the Barangay Services System. The goal was to allow users to file complaints, request documents or aid, and receive announcements from the barangay. We started coding in CodeSandbox but later transferred development to Lovable.dev for a more streamlined UI-building experience.
+🎯 OverviewThis week, we began building the Barangay Services System — a tool that lets residents file complaints, request official documents or aid, and view barangay announcements. We started development in CodeSandbox, but we later decided to switch over to Lovable.app to simplify our UI building and code export process.
 
 🔧 What We Did
 
@@ -27,121 +20,113 @@ Announcements View
 
 Integrated React Router for page navigation
 
-Switched platform from CodeSandbox to Locofy.ai for easier UI development
+Migrated development platform from CodeSandbox to Lovable.app
 
-Set up reusable components and styled basic pages
+Set up reusable components and basic CSS styling
 
 💡 Challenges
 
-CodeSandbox was laggy and occasionally crashed during team edits
+CodeSandbox was laggy and unstable during collaborative edits
 
-Locofy.ai required cleanup of auto-generated code and duplicate classes
+Lovable’s auto-generated code had a lot of duplicate class names and unnecessary wrappers
 
-Figuring out proper form validation across all inputs
+Managing form validation without a backend was tricky
 
 📌 Lessons & Next Steps
 
-Locofy is powerful for layout but needs custom logic afterward
+UI platforms like Lovable are great for fast layout, but manual code cleanup is needed
 
-Next step is to link each form to a backend to store user submissions
+Explore alternative ways to store data without a full backend
 
-Begin working on the admin login and dashboard for managing requests
+Start building out the admin interface for processing resident requests
 
 🗓️ Weekly Progress – April 21–25
 
-🎯 OverviewThis week was all about connecting the resident-facing system to the backend and beginning work on the admin panel. We focused on making the complaint, document, and aid requests functional.
+🎯 OverviewThis week we shifted focus to adding interactivity to the forms and simulating a data layer using localStorage. Because a full backend was too complex to implement in time, we used browser storage as a substitute to demonstrate functionality.
 
 🔧 What We Did
 
-Hooked up form submissions to Firebase (temporary backend)
+Connected all forms (complaint, document, aid) to localStorage
 
-Implemented status-based views for the admin dashboard
+Built the structure for the admin dashboard to pull submitted data from localStorage
 
-Designed Admin Login Page and tested login states
+Created a login page for admins (no real authentication; just simulated for demo purposes)
 
-Enhanced UI design in Locofy, especially responsiveness
+Made more responsive design tweaks using Lovable
 
 💡 Challenges
 
-Firebase data was not syncing immediately — had to debug useEffect triggers
+No backend meant we had to manually parse and update data in localStorage
 
-Locofy components had repeated CSS classes that caused layout shifts
+Handling array updates in localStorage was error-prone and required extra testing
 
-Some forms had missing fields that caused unexpected submission errors
+Lovable’s code export sometimes created conflicts with custom logic
 
 📌 Lessons & Next Steps
 
-Always test each form with dummy data before linking
+localStorage can work well for prototyping when backend setup isn’t feasible
 
-Start adding announcements panel for admins next week
+Admin panel needs filtering and sorting of entries next
 
-Improve visual feedback after form submission
+Add feature for posting and managing announcements
 
 🗓️ Weekly Progress – April 28 – May 2
 
-🎯 OverviewThis week we finalized the admin panel features and ensured residents could properly submit and track their requests. We also added the ability for admins to post announcements.
+🎯 OverviewThis week we finalized all major components for both residents and the admin side. Users could now file requests, and the admin could view and manage these. We also added an announcements module for the admin.
 
 🔧 What We Did
 
-Finalized the Admin Dashboard:
+Completed Admin Dashboard functionality:
 
-View submitted complaints
+View complaints, document, and aid requests
 
-View document and aid requests
+Finalized form confirmation prompts and success messages
 
-Post announcements with a WYSIWYG interface
-
-Added confirmation alerts after each user form submission
-
-Made all pages mobile-responsive using Locofy’s auto-layout tools
+Cleaned up Lovable-exported code and organized reusable files
 
 💡 Challenges
 
-Announcement preview wasn’t rendering properly in some browsers
+Announcement view formatting was inconsistent across devices
 
-Had to refactor the submission logic to avoid duplicated entries
+Refactoring how data is stored/retrieved from localStorage to avoid overwrites
 
-The admin login session sometimes expired too early
+Some bug reports about missing or malformed data were caused by empty form submissions
 
 📌 Lessons & Next Steps
 
-Use localStorage or token-based auth to manage admin sessions
+Use stricter validation before storing data
 
-Prepare the project for documentation, GitHub README, and submission
+Final testing phase and documentation writing to begin
 
-Run full QA testing and finalize minor UI bugs
+Prep project for GitHub upload and class submission
 
 🗓️ Weekly Progress – May 3–7
 
-🎯 OverviewThis final week was focused on polish, bug fixing, and writing documentation for the submission. We finalized all forms, finished the admin system, and updated the GitHub repository with our latest code and logs.
+🎯 OverviewThe final week focused on polishing, fixing bugs, and preparing all documentation for presentation and submission. We finalized our GitHub repo and created this README with weekly logs.
 
 🔧 What We Did
 
-Fixed bugs in:
+Fixed layout bugs caused by Lovable's auto-layout wrappers
 
-Audio notification toggle for admins (optional feature)
+Final QA test run on all major forms and admin tools
 
-Form validation alerts
+Wrote project documentation and organized project folders
 
-Announcement timestamp formatting
-
-Wrote project documentation and README file
-
-Organized code structure into reusable folders
-
-Completed QA testing and final walkthrough
+Uploaded everything to GitHub
 
 💡 Challenges
 
-Deployment took longer than expected due to some dependencies
+Last-minute form validation bugs
 
-Needed to manually tweak a few styles that Locofy generated
+Slight inconsistencies in localStorage retrieval for admin dashboard
+
+Adjusting CSS for mobile display across all views
 
 📌 Final Notes
 
-All core features are complete and working:✅ Complaint Filing✅ Aid and Document Requests✅ Admin Login & Dashboard✅ Announcements Posting
+All main features are complete and working:✅ Complaint Filing✅ Document & Aid Requests✅ Admin Dashboard (view, filter, manage entries)✅ Announcements Management
 
-System successfully demonstrates barangay-resident interaction
+The system successfully simulates a working Barangay Services platform using front-end technologies and localStorage
 
 👥 Team Members
 
