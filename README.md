@@ -1,3 +1,7 @@
+
+PUBLISHED ON LOVABLE.APP: https://group4.lovable.app/
+
+
 WEEKLY UPDATES LOG
 
 📂 Project: Barangay Services Web App (React)GitHub Repo: jadeambos123/react-mix-masterpiece
