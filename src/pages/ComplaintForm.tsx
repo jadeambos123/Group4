@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useToast } from '@/hooks/use-toast';
+import { addComplaint } from '../services/storageService';
 
 const ComplaintForm = () => {
   const [name, setName] = useState('');
@@ -29,15 +30,31 @@ const ComplaintForm = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    // Save to storage
+    try {
+      addComplaint({
+        name,
+        contact,
+        urgency,
+        description
+      });
+      
+      setTimeout(() => {
+        setIsLoading(false);
+        toast({
+          title: "Complaint Submitted",
+          description: "Your complaint has been received and is pending review.",
+        });
+        navigate('/');
+      }, 1000);
+    } catch (error) {
       setIsLoading(false);
       toast({
-        title: "Complaint Submitted",
-        description: "Your complaint has been received and is pending review.",
+        title: "Error",
+        description: "There was a problem submitting your complaint. Please try again.",
+        variant: "destructive"
       });
-      navigate('/');
-    }, 1000);
+    }
   };
 
   return (

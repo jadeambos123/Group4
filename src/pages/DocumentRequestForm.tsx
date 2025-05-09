@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useToast } from '@/hooks/use-toast';
+import { addDocumentRequest } from '../services/storageService';
 
 const DocumentRequestForm = () => {
   const [name, setName] = useState('');
@@ -30,15 +31,32 @@ const DocumentRequestForm = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    // Save to storage
+    try {
+      addDocumentRequest({
+        name,
+        address,
+        contact,
+        documentType,
+        purpose
+      });
+      
+      setTimeout(() => {
+        setIsLoading(false);
+        toast({
+          title: "Document Request Submitted",
+          description: "Your request has been received and is pending processing.",
+        });
+        navigate('/');
+      }, 1000);
+    } catch (error) {
       setIsLoading(false);
       toast({
-        title: "Document Request Submitted",
-        description: "Your request has been received and is pending processing.",
+        title: "Error",
+        description: "There was a problem submitting your request. Please try again.",
+        variant: "destructive"
       });
-      navigate('/');
-    }, 1000);
+    }
   };
 
   return (

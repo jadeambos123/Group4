@@ -1,19 +1,43 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
 import { MessageSquare, FileText, Heart } from 'lucide-react';
+import { 
+  getComplaints, 
+  getDocumentRequests, 
+  getAidRequests, 
+  getAllActivities 
+} from '@/services/storageService';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+  const [complaints, setComplaints] = useState(getComplaints());
+  const [documents, setDocuments] = useState(getDocumentRequests());
+  const [aidRequests, setAidRequests] = useState(getAidRequests());
+  const [activities, setActivities] = useState(getAllActivities());
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn !== 'true') {
       navigate('/admin');
     }
+
+    // Refresh data
+    setComplaints(getComplaints());
+    setDocuments(getDocumentRequests());
+    setAidRequests(getAidRequests());
+    setActivities(getAllActivities());
   }, [navigate]);
 
   const handleLogout = () => {
@@ -46,13 +70,13 @@ const Dashboard: React.FC = () => {
               <p className="text-sm text-gray-500 mb-2">Manage resident complaints</p>
               <div className="mt-auto">
                 <div className="flex flex-col">
-                  <span className="text-4xl font-bold">1</span>
+                  <span className="text-4xl font-bold">{complaints.length}</span>
                   <div className="text-sm">Total complaints</div>
                 </div>
                 <div className="mt-2 flex flex-col gap-1 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-amber-500">1 pending</span>
-                    <span>0 resolved</span>
+                    <span className="text-amber-500">{complaints.filter(c => c.status === 'pending').length} pending</span>
+                    <span>{complaints.filter(c => c.status === 'resolved').length} resolved</span>
                   </div>
                 </div>
               </div>
@@ -75,13 +99,13 @@ const Dashboard: React.FC = () => {
               <p className="text-sm text-gray-500 mb-2">Process document applications</p>
               <div className="mt-auto">
                 <div className="flex flex-col">
-                  <span className="text-4xl font-bold">1</span>
+                  <span className="text-4xl font-bold">{documents.length}</span>
                   <div className="text-sm">Total requests</div>
                 </div>
                 <div className="mt-2 flex flex-col gap-1 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-amber-500">1 pending</span>
-                    <span>0 completed</span>
+                    <span className="text-amber-500">{documents.filter(d => d.status === 'pending').length} pending</span>
+                    <span>{documents.filter(d => d.status === 'completed').length} completed</span>
                   </div>
                 </div>
               </div>
@@ -104,16 +128,16 @@ const Dashboard: React.FC = () => {
               <p className="text-sm text-gray-500 mb-2">Review assistance requests</p>
               <div className="mt-auto">
                 <div className="flex flex-col">
-                  <span className="text-4xl font-bold">1</span>
+                  <span className="text-4xl font-bold">{aidRequests.length}</span>
                   <div className="text-sm">Total applications</div>
                 </div>
                 <div className="mt-2 flex flex-col gap-1 text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-amber-500">1 pending</span>
+                    <span className="text-amber-500">{aidRequests.filter(a => a.status === 'pending').length} pending</span>
                     <div>
-                      <span className="text-green-500">0 approved</span>
+                      <span className="text-green-500">{aidRequests.filter(a => a.status === 'approved').length} approved</span>
                       <span className="mx-1">•</span>
-                      <span className="text-red-500">0 rejected</span>
+                      <span className="text-red-500">{aidRequests.filter(a => a.status === 'rejected').length} rejected</span>
                     </div>
                   </div>
                 </div>
@@ -132,28 +156,65 @@ const Dashboard: React.FC = () => {
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-4">Recent Activity</h2>
           <Card className="overflow-hidden">
-            <div className="p-6 space-y-4">
-              <ActivityItem 
-                type="complaint"
-                name="Juan Dela Cruz"
-                date="2025-05-09"
-                status="pending"
-              />
-              
-              <ActivityItem 
-                type="document"
-                name="Juan Dela Cruz"
-                date="2025-05-09"
-                status="pending"
-              />
-              
-              <ActivityItem 
-                type="aid"
-                name="Juan Dela Cruz"
-                date="2025-05-09"
-                status="pending"
-              />
+            <div className="p-6">
+              {activities.length === 0 ? (
+                <p className="text-center text-gray-500 py-4">No recent activity</p>
+              ) : (
+                <div className="space-y-4">
+                  {activities.slice(0, 5).map((activity: any) => (
+                    <ActivityItem 
+                      key={activity.id}
+                      type={activity.type}
+                      name={activity.name}
+                      date={activity.date}
+                      status={activity.status}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
+          </Card>
+        </div>
+        
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold mb-4">All Submissions</h2>
+          <Card className="overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {activities.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={4} className="text-center">No submissions yet</TableCell>
+                  </TableRow>
+                ) : (
+                  activities.map((activity: any) => (
+                    <TableRow key={activity.id}>
+                      <TableCell>{activity.date}</TableCell>
+                      <TableCell className="capitalize">{activity.type}</TableCell>
+                      <TableCell>{activity.name}</TableCell>
+                      <TableCell>
+                        <span className={`px-2 py-1 rounded-full text-xs ${
+                          activity.status === 'pending' 
+                            ? 'bg-yellow-100 text-yellow-800' 
+                            : activity.status === 'resolved' || activity.status === 'completed' || activity.status === 'approved'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}>
+                          {activity.status}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
           </Card>
         </div>
       </main>
@@ -204,8 +265,14 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ type, name, date, status })
           <span>{date}</span>
         </div>
       </div>
-      <div className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">
-        Pending
+      <div className={`text-xs px-2 py-1 rounded-full ${
+        status === 'pending' 
+          ? 'bg-yellow-100 text-yellow-800' 
+          : status === 'resolved' || status === 'completed' || status === 'approved'
+          ? 'bg-green-100 text-green-800'
+          : 'bg-red-100 text-red-800'
+      }`}>
+        {status}
       </div>
     </div>
   );

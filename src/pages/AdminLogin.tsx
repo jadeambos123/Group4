@@ -20,8 +20,13 @@ const AdminLogin: React.FC = () => {
     
     // Simple authentication for demo purposes
     if (username === 'admin' && password === 'admin123') {
+      // Store login state and navigate
       localStorage.setItem('isLoggedIn', 'true');
-      navigate('/admin/dashboard');
+      
+      // Add this timeout to ensure the localStorage is set before navigation
+      setTimeout(() => {
+        navigate('/admin/dashboard');
+      }, 100);
     } else {
       toast({
         title: "Login Failed",
