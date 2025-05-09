@@ -1,73 +1,154 @@
-# Welcome to your Lovable project
+WEEKLY UPDATES LOG
 
-## Project info
+📂 Project: Barangay Services Web App (React)GitHub Repo: jadeambos123/react-mix-masterpiece
 
-**URL**: https://lovable.dev/projects/0d90af78-2c5c-49b1-89a8-0b2534bf6752
+🗓️ Weekly Progress – April 14–18
 
-## How can I edit this code?
+🎯 OverviewThis week, we started building the Barangay Services System. The goal was to allow users to file complaints, request documents or aid, and receive announcements from the barangay. We started coding in CodeSandbox but later transferred development to Locofy.ai for a more streamlined UI-building experience.
 
-There are several ways of editing your application.
+🔧 What We Did
 
-**Use Lovable**
+Created initial UI layouts for:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0d90af78-2c5c-49b1-89a8-0b2534bf6752) and start prompting.
+Complaint Form
 
-Changes made via Lovable will be committed automatically to this repo.
+Document Request Form
 
-**Use your preferred IDE**
+Aid Request Form
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Announcements View
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Integrated React Router for page navigation
 
-Follow these steps:
+Switched platform from CodeSandbox to Locofy.ai for easier UI development
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Set up reusable components and styled basic pages
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+💡 Challenges
 
-# Step 3: Install the necessary dependencies.
-npm i
+CodeSandbox was laggy and occasionally crashed during team edits
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Locofy.ai required cleanup of auto-generated code and duplicate classes
 
-**Edit a file directly in GitHub**
+Figuring out proper form validation across all inputs
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+📌 Lessons & Next Steps
 
-**Use GitHub Codespaces**
+Locofy is powerful for layout but needs custom logic afterward
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Next step is to link each form to a backend to store user submissions
 
-## What technologies are used for this project?
+Begin working on the admin login and dashboard for managing requests
 
-This project is built with:
+🗓️ Weekly Progress – April 21–25
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+🎯 OverviewThis week was all about connecting the resident-facing system to the backend and beginning work on the admin panel. We focused on making the complaint, document, and aid requests functional.
 
-## How can I deploy this project?
+🔧 What We Did
 
-Simply open [Lovable](https://lovable.dev/projects/0d90af78-2c5c-49b1-89a8-0b2534bf6752) and click on Share -> Publish.
+Hooked up form submissions to Firebase (temporary backend)
 
-## Can I connect a custom domain to my Lovable project?
+Implemented status-based views for the admin dashboard
 
-Yes, you can!
+Designed Admin Login Page and tested login states
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Enhanced UI design in Locofy, especially responsiveness
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+💡 Challenges
+
+Firebase data was not syncing immediately — had to debug useEffect triggers
+
+Locofy components had repeated CSS classes that caused layout shifts
+
+Some forms had missing fields that caused unexpected submission errors
+
+📌 Lessons & Next Steps
+
+Always test each form with dummy data before linking
+
+Start adding announcements panel for admins next week
+
+Improve visual feedback after form submission
+
+🗓️ Weekly Progress – April 28 – May 2
+
+🎯 OverviewThis week we finalized the admin panel features and ensured residents could properly submit and track their requests. We also added the ability for admins to post announcements.
+
+🔧 What We Did
+
+Finalized the Admin Dashboard:
+
+View submitted complaints
+
+View document and aid requests
+
+Post announcements with a WYSIWYG interface
+
+Added confirmation alerts after each user form submission
+
+Made all pages mobile-responsive using Locofy’s auto-layout tools
+
+💡 Challenges
+
+Announcement preview wasn’t rendering properly in some browsers
+
+Had to refactor the submission logic to avoid duplicated entries
+
+The admin login session sometimes expired too early
+
+📌 Lessons & Next Steps
+
+Use localStorage or token-based auth to manage admin sessions
+
+Prepare the project for documentation, GitHub README, and submission
+
+Run full QA testing and finalize minor UI bugs
+
+🗓️ Weekly Progress – May 3–7
+
+🎯 OverviewThis final week was focused on polish, bug fixing, and writing documentation for the submission. We finalized all forms, finished the admin system, and updated the GitHub repository with our latest code and logs.
+
+🔧 What We Did
+
+Fixed bugs in:
+
+Audio notification toggle for admins (optional feature)
+
+Form validation alerts
+
+Announcement timestamp formatting
+
+Wrote project documentation and README file
+
+Organized code structure into reusable folders
+
+Completed QA testing and final walkthrough
+
+💡 Challenges
+
+Deployment took longer than expected due to some dependencies
+
+Needed to manually tweak a few styles that Locofy generated
+
+📌 Final Notes
+
+All core features are complete and working:✅ Complaint Filing✅ Aid and Document Requests✅ Admin Login & Dashboard✅ Announcements Posting
+
+System successfully demonstrates barangay-resident interaction
+
+👥 Team Members
+
+Jade Ambos
+
+Archie Jason Savaria
+
+Finnah Marie Bajas
+
+Kierby Amolato
+
+Michael Canoy
+
+Ashlee Rubin
+
+Timothy Fortes
+
