@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/components/ui/toast';
 import { Header } from '@/components/Header';
 import { Lock } from 'lucide-react';
 import { Label } from '@/components/ui/label';
@@ -20,9 +20,14 @@ const AdminLogin = () => {
     
     // Simple authentication for demo purposes
     if (username === 'admin' && password === 'admin123') {
-      // Store login state and navigate
+      // Store login state and navigate immediately
       localStorage.setItem('isLoggedIn', 'true');
       navigate('/admin/dashboard');
+      
+      toast({
+        title: "Login Successful",
+        description: "Welcome to the admin dashboard!",
+      });
     } else {
       toast({
         title: "Login Failed",
