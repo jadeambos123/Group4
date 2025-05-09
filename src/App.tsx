@@ -15,7 +15,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  // We need to check this every render to ensure proper protection
+  
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   return (
@@ -25,20 +25,20 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            {/* Public Routes */}
+            
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/file-complaint" element={<ComplaintForm />} />
             <Route path="/request-documents" element={<DocumentRequestForm />} />
             <Route path="/request-aid" element={<AidRequestForm />} />
             
-            {/* Protected Admin Routes */}
+            
             <Route 
               path="/admin/dashboard" 
               element={isLoggedIn ? <Dashboard /> : <Navigate to="/admin" />} 
             />
             
-            {/* Catch-all route */}
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
