@@ -11,7 +11,7 @@ WEEKLY UPDATES LOG
 
 🗓️ Weekly Progress – April 14–18
 
-🎯 OverviewThis week, we started building the Barangay Services System. The goal was to allow users to file complaints, request documents or aid, and receive announcements from the barangay. We started coding in CodeSandbox but later transferred development to Locofy.ai for a more streamlined UI-building experience.
+🎯 OverviewThis week, we started building the Barangay Services System. The goal was to allow users to file complaints, request documents or aid, and receive announcements from the barangay. We started coding in CodeSandbox but later transferred development to Lovable.dev for a more streamlined UI-building experience.
 
 🔧 What We Did
 
