@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false, onLogout }) => 
           <Button 
             variant="outline" 
             size="sm" 
-            className="text-white border-white hover:bg-white/10"
+            className="text-white border-white/70 hover:bg-white/10"
           >
             <LogIn size={18} className="mr-1" /> 
             Admin Login

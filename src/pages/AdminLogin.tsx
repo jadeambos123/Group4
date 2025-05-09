@@ -22,11 +22,7 @@ const AdminLogin: React.FC = () => {
     if (username === 'admin' && password === 'admin123') {
       // Store login state and navigate
       localStorage.setItem('isLoggedIn', 'true');
-      
-      // Add this timeout to ensure the localStorage is set before navigation
-      setTimeout(() => {
-        navigate('/admin/dashboard');
-      }, 100);
+      navigate('/admin/dashboard');
     } else {
       toast({
         title: "Login Failed",
@@ -79,7 +75,7 @@ const AdminLogin: React.FC = () => {
               />
             </div>
             
-            <Button type="submit" className="w-full bg-barangay-navy hover:bg-barangay-navy/90">
+            <Button type="submit" className="w-full bg-slate-700 hover:bg-slate-800">
               Sign In
             </Button>
           </form>
