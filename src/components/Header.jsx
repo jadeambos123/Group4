@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Home, LogIn, LogOut } from 'lucide-react';
 
-interface HeaderProps {
-  isAdmin?: boolean;
-  onLogout?: () => void;
-}
-
-export const Header: React.FC<HeaderProps> = ({ isAdmin = false, onLogout }) => {
+/**
+ * Header component that displays at the top of all pages
+ */
+export const Header = ({ isAdmin = false, onLogout }) => {
   return (
     <header className="bg-barangay-navy text-white py-3 px-4 flex items-center justify-between">
       <Link to="/" className="flex items-center gap-2 text-xl font-semibold">
@@ -45,3 +43,5 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false, onLogout }) => 
     </header>
   );
 };
+
+export default Header;

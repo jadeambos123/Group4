@@ -9,13 +9,13 @@ import { Header } from '@/components/Header';
 import { Lock } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 
-const AdminLogin: React.FC = () => {
+const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     
     // Simple authentication for demo purposes

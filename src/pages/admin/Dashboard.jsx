@@ -20,7 +20,60 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const Dashboard: React.FC = () => {
+const ActivityItem = ({ type, name, date, status }) => {
+  const getIcon = () => {
+    switch (type) {
+      case 'complaint':
+        return <MessageSquare size={18} />;
+      case 'document':
+        return <FileText size={18} />;
+      case 'aid':
+        return <Heart size={18} />;
+      default:
+        return null;
+    }
+  };
+  
+  const getTypeText = () => {
+    switch (type) {
+      case 'complaint':
+        return 'Complaint';
+      case 'document':
+        return 'Document';
+      case 'aid':
+        return 'Aid';
+      default:
+        return '';
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-4 py-2">
+      <div className="text-gray-600">
+        {getIcon()}
+      </div>
+      <div className="flex-1">
+        <div className="font-medium">{name}</div>
+        <div className="text-sm text-gray-500 flex gap-2 items-center">
+          <span>{getTypeText()}</span>
+          <span>•</span>
+          <span>{date}</span>
+        </div>
+      </div>
+      <div className={`text-xs px-2 py-1 rounded-full ${
+        status === 'pending' 
+          ? 'bg-yellow-100 text-yellow-800' 
+          : status === 'resolved' || status === 'completed' || status === 'approved'
+          ? 'bg-green-100 text-green-800'
+          : 'bg-red-100 text-red-800'
+      }`}>
+        {status}
+      </div>
+    </div>
+  );
+};
+
+const Dashboard = () => {
   const navigate = useNavigate();
   const [complaints, setComplaints] = useState(getComplaints());
   const [documents, setDocuments] = useState(getDocumentRequests());
@@ -161,7 +214,7 @@ const Dashboard: React.FC = () => {
                 <p className="text-center text-gray-500 py-4">No recent activity</p>
               ) : (
                 <div className="space-y-4">
-                  {activities.slice(0, 5).map((activity: any) => (
+                  {activities.slice(0, 5).map((activity) => (
                     <ActivityItem 
                       key={activity.id}
                       type={activity.type}
@@ -194,7 +247,7 @@ const Dashboard: React.FC = () => {
                     <TableCell colSpan={4} className="text-center">No submissions yet</TableCell>
                   </TableRow>
                 ) : (
-                  activities.map((activity: any) => (
+                  activities.map((activity) => (
                     <TableRow key={activity.id}>
                       <TableCell>{activity.date}</TableCell>
                       <TableCell className="capitalize">{activity.type}</TableCell>
@@ -218,62 +271,6 @@ const Dashboard: React.FC = () => {
           </Card>
         </div>
       </main>
-    </div>
-  );
-};
-
-interface ActivityItemProps {
-  type: 'complaint' | 'document' | 'aid';
-  name: string;
-  date: string;
-  status: string;
-}
-
-const ActivityItem: React.FC<ActivityItemProps> = ({ type, name, date, status }) => {
-  const getIcon = () => {
-    switch (type) {
-      case 'complaint':
-        return <MessageSquare size={18} />;
-      case 'document':
-        return <FileText size={18} />;
-      case 'aid':
-        return <Heart size={18} />;
-    }
-  };
-  
-  const getTypeText = () => {
-    switch (type) {
-      case 'complaint':
-        return 'Complaint';
-      case 'document':
-        return 'Document';
-      case 'aid':
-        return 'Aid';
-    }
-  };
-
-  return (
-    <div className="flex items-center gap-4 py-2">
-      <div className="text-gray-600">
-        {getIcon()}
-      </div>
-      <div className="flex-1">
-        <div className="font-medium">{name}</div>
-        <div className="text-sm text-gray-500 flex gap-2 items-center">
-          <span>{getTypeText()}</span>
-          <span>•</span>
-          <span>{date}</span>
-        </div>
-      </div>
-      <div className={`text-xs px-2 py-1 rounded-full ${
-        status === 'pending' 
-          ? 'bg-yellow-100 text-yellow-800' 
-          : status === 'resolved' || status === 'completed' || status === 'approved'
-          ? 'bg-green-100 text-green-800'
-          : 'bg-red-100 text-red-800'
-      }`}>
-        {status}
-      </div>
     </div>
   );
 };

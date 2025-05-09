@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
+  // We need to check this every render to ensure proper protection
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   return (
